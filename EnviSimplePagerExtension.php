@@ -102,7 +102,7 @@ class EnviSimplePagerExtension
      */
     public function getLimit()
     {
-        return (int)$this->limit;
+        return empty($this->limit) ? (int)$this->system_conf['default_limit'] : (int)$this->limit;
     }
     /* ----------------------------------------- */
 
@@ -116,7 +116,10 @@ class EnviSimplePagerExtension
      */
     public function getOffset()
     {
-        return (int)$this->offset;
+        if (!empty($this->offset)) {
+            return (int)$this->offset;
+        }
+        return ($this->getStart() - 1) * $this->getLimit();
     }
     /* ----------------------------------------- */
 
