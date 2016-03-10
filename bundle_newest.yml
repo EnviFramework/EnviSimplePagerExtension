@@ -1,0 +1,24 @@
+name: "simple_pager."
+type: "extension"
+description: "ページング処理を行うためのextension"
+keywords: "pager,simple_pager"
+homepage: "http://www.enviphp.net/"
+license: "LGPL-2.0"
+authors:
+    -
+        name: "akito"
+        email: "akito-artisan@five-foxes.com"
+    -
+        name: "suzunone"
+        email: "suzunone.eleven@gmail.com"
+support:
+    issues: "https://github.com/EnviMVC/EnviSimplePagerExtension/issues"
+    forum: "https://github.com/EnviMVC/EnviSimplePagerExtension/issues"
+require: {
+    php: ">=5.4"
+    envi: ">=3.4.8"
+install:
+    version: "v1.0"
+    mode: "git"
+    clone: "https://github.com/EnviMVC/EnviSimplePagerExtension.git"
+depend:
