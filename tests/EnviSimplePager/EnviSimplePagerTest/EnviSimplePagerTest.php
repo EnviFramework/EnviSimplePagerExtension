@@ -237,6 +237,7 @@ class EnviSimplePagerTest extends testCaseBase
         ->once()
         // 開始位置 4
         ->andReturn(4);
+
         $EnviSimplePagerExtension->shouldReceive('range')
         ->once()
         ->with(1, 10)
@@ -506,12 +507,12 @@ class EnviSimplePagerTest extends testCaseBase
     public function getRequestPathTest()
     {
         // 先頭
-        $_SERVER['SCRIPT_NAME'] = '/aaa.php';
+        $_SERVER['SCRIPT_URL'] = '/aaa.php/module/action/example';
         $_SERVER['PATH_INFO'] = '/module/action/example';
-        $this->assertEquals($this->EnviSimplePagerExtension->getRequestPath(), $_SERVER['SCRIPT_NAME'].$_SERVER['PATH_INFO']);
+        $this->assertEquals($this->EnviSimplePagerExtension->getRequestPath(), $_SERVER['SCRIPT_URL']);
 
         unset($_SERVER['PATH_INFO']);
-        $this->assertEquals($this->EnviSimplePagerExtension->getRequestPath(), $_SERVER['SCRIPT_NAME']);
+        $this->assertEquals($this->EnviSimplePagerExtension->getRequestPath(), $_SERVER['SCRIPT_URL']);
 
     }
     /* ----------------------------------------- */

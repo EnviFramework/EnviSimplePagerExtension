@@ -102,7 +102,7 @@ class EnviSimplePagerExtension
      */
     public function getLimit()
     {
-        return (int)$this->limit;
+        return empty($this->limit) ? (int)$this->system_conf['default_limit'] : (int)$this->limit;
     }
     /* ----------------------------------------- */
 
@@ -116,7 +116,10 @@ class EnviSimplePagerExtension
      */
     public function getOffset()
     {
-        return (int)$this->offset;
+        if (!empty($this->offset)) {
+            return (int)$this->offset;
+        }
+        return ($this->getStart() - 1) * $this->getLimit();
     }
     /* ----------------------------------------- */
 
@@ -160,15 +163,18 @@ class EnviSimplePagerExtension
         if ($this->last < $this->pager) {
             // pager最大値がlastより小さい場合
             return $this->range(1, min($this->pager, $this->last));
-        } elseif ($this->last - $this->pager < $this->start) {
-            // 終端処理
-            $start = $this->last - $this->pager;
-            return $this->range($start, $this->last);
         }
+
         $pager_diff = (int)ceil($this->pager / 2);
         if ($pager_diff >= $this->start) {
             return $this->range(1, $this->pager);
         }
+        if ($this->last - $this->pager < $this->start) {
+            // 終端処理
+            $start = $this->last - $this->pager;
+            return $this->range($start, $this->last);
+        }
+
 
         $start = $this->start - $pager_diff + 1;
         return $this->range($start, $start + $this->pager - 1);
@@ -184,6 +190,160 @@ class EnviSimplePagerExtension
     public function getUrls()
     {
         $pages        = $this->getPages();
+        $query_string = $this->getQueryString();
+        $base_url     = $this->getRequestPath().'?'.$query_string;
+        $amp          = '';
+
+        if (mb_strlen($query_string)) {
+            $amp = '&';
+        }
+        $base_url .= $amp.$this->system_conf['start_key'].'=';
+
+        $res = array();
+        foreach ($pages as $page) {
+            $res[$page] = $base_url.$page;
+        }
+        return $res;
+    }
+    /* ----------------------------------------- */
+
+
+
+    /**
+     * +-- アクティブページかどうかを返す
+     *
+     * @access      public
+     * @param       var_text $page
+     * @return      bool
+     */
+    public function isActive($page)
+    {
+        return $page == $this->getStart();
+    }
+    /* ----------------------------------------- */
+
+    /**
+     * +-- アクティブページか最初のページかどうかを返す
+     *
+     * @access      public
+     * @param       var_text $page
+     * @return      bool
+     */
+    public function isFirstPage()
+    {
+        return $this->isActive(1);
+    }
+    /* ----------------------------------------- */
+
+
+    /**
+     * +-- アクティブページか最後のページかどうかを返す
+     *
+     * @access      public
+     * @param       var_text $page
+     * @return      bool
+     */
+    public function isLastPage()
+    {
+        return $this->isActive($this->getLastPage());
+    }
+    /* ----------------------------------------- */
+
+
+
+
+    /**
+     * +-- ページ番号からURLを取得する
+     *
+     * @access      public
+     * @param       var_text $page
+     * @return      string
+     */
+    public function getUrlFromPage($page)
+    {
+        $query_string = $this->getQueryString();
+        $base_url     = $this->getRequestPath().'?'.$query_string;
+        $amp          = '';
+
+        if (mb_strlen($query_string)) {
+            $amp = '&';
+        }
+        $base_url .= $amp.$this->system_conf['start_key'].'=';
+
+        return $base_url.$page;
+    }
+    /* ----------------------------------------- */
+
+    /**
+     * +-- 先頭ページURLを取得する
+     *
+     * @access      public
+     * @return      string
+     */
+    public function getFirstPageUrl()
+    {
+        return $this->getUrlFromPage(1);
+    }
+    /* ----------------------------------------- */
+
+    /**
+     * +-- 終端ページURLを取得する
+     *
+     * @access      public
+     * @return      string
+     */
+    public function getLastPageUrl()
+    {
+        return $this->getUrlFromPage($this->getLastPage());
+    }
+    /* ----------------------------------------- */
+
+
+    /**
+     * +-- 先頭ページURLを取得する
+     *
+     * @access      public
+     * @return      string
+     */
+    public function getPreviousPageUrl()
+    {
+        return $this->getUrlFromPage(max(1, $this->getStart() - 1));
+    }
+    /* ----------------------------------------- */
+
+    /**
+     * +-- 終端ページURLを取得する
+     *
+     * @access      public
+     * @return      string
+     */
+    public function getNextPageUrl()
+    {
+        return $this->getUrlFromPage(min($this->getLastPage(), $this->getStart() + 1));
+    }
+    /* ----------------------------------------- */
+
+    /**
+     * +-- すべてのページを取得
+     *
+     * @access      public
+     * @return      array
+     */
+    public function getPageAll()
+    {
+        return $this->range(1, $this->getLastPage());
+    }
+    /* ----------------------------------------- */
+
+    /**
+     * +-- すべてのURLを取得
+     *
+     * @access      public
+     * @return      array
+     */
+    public function getUrlAll()
+    {
+        $pages        = $this->getPageAll();
         $query_string = $this->getQueryString();
         $base_url     = $this->getRequestPath().'?'.$query_string;
         $amp          = '';
@@ -229,11 +389,7 @@ class EnviSimplePagerExtension
      */
    public function getRequestPath()
    {
-       $res = $_SERVER['SCRIPT_NAME'];
-       if (isset($_SERVER['PATH_INFO'])) {
-           $res .= $_SERVER['PATH_INFO'];
-       }
-       return $res;
+       return $_SERVER['SCRIPT_URL'];
    }
    /* ----------------------------------------- */
 
