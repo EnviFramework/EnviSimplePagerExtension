@@ -1,0 +1,8 @@
+all:
+  ## ページング用のキー
+  start_key: "str"
+  ## デフォルトのリミット
+  default_limit: 20
+  ## デフォルトのページ数
+  default_pager: 10
+

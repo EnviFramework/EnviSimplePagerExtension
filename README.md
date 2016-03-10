@@ -1,2 +1,24 @@
-# EnviSimplePagereExtension
-繝壹�ｼ繧ｸ繝ｳ繧ｰ蜃ｦ逅�繧定｡後≧縺溘ａ縺ｮ繧ｷ繝ｳ繝励Ν縺ｪEnvi Extension
+simple_pagerを使用するためのエクステンションクラス
+=================================
+
+概要
+--------------------------------------------------
+ページング処理を行うためのextension
+
+パッケージ管理
+--------------------------------------------------
+EnviSimplePagereExtensionパッケージをEnviMvcにバンドルさせるには、
+
+`envi install-bundle new https://raw.githubusercontent.com/EnviMVC/EnviSimplePagereExtension/master/bundle.yml`
+
+コマンドを実行します。
+
+インストール・設定
+--------------------------------------------------
+
+パッケージがバンドルされていれば、
+
+`envi install-extension {app_key} {DI設定ファイル} simple_pager`
+
+コマンドでインストール出来ます。
+
