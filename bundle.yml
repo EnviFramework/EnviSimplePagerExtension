@@ -1,4 +1,4 @@
-name: "simple_pager."
+name: "simple_pager"
 type: "extension"
 description: "ページング処理を行うためのextension"
 keywords: "pager,simple_pager"
