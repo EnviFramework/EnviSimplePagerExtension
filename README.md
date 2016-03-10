@@ -1,24 +1,24 @@
-simple_pager‚ğg—p‚·‚é‚½‚ß‚ÌƒGƒNƒXƒeƒ“ƒVƒ‡ƒ“ƒNƒ‰ƒX
+simple_pagerã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã®ã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³ã‚¯ãƒ©ã‚¹
 =================================
 
-ŠT—v
+æ¦‚è¦
 --------------------------------------------------
-ƒy[ƒWƒ“ƒOˆ—‚ğs‚¤‚½‚ß‚Ìextension
+ãƒšãƒ¼ã‚¸ãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†ãŸã‚ã®extension
 
-ƒpƒbƒP[ƒWŠÇ—
+ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ç®¡ç†
 --------------------------------------------------
-EnviSimplePagereExtensionƒpƒbƒP[ƒW‚ğEnviMvc‚Éƒoƒ“ƒhƒ‹‚³‚¹‚é‚É‚ÍA
+EnviSimplePagereExtensionãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’EnviMvcã«ãƒãƒ³ãƒ‰ãƒ«ã•ã›ã‚‹ã«ã¯ã€
 
-`envi install-bundle new https://raw.githubusercontent.com/EnviMVC/EnviSimplePagereExtension/master/bundle.yml`
+`envi install-bundle new https://raw.githubusercontent.com/EnviMVC/EnviSimplePagerExtension/master/bundle.yml`
 
-ƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ü‚·B
+ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 
-ƒCƒ“ƒXƒg[ƒ‹Eİ’è
+ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãƒ»è¨­å®š
 --------------------------------------------------
 
-ƒpƒbƒP[ƒW‚ªƒoƒ“ƒhƒ‹‚³‚ê‚Ä‚¢‚ê‚ÎA
+ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒãƒãƒ³ãƒ‰ãƒ«ã•ã‚Œã¦ã„ã‚Œã°ã€
 
-`envi install-extension {app_key} {DIİ’èƒtƒ@ƒCƒ‹} simple_pager`
+`envi install-extension {app_key} {DIè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«} simple_pager`
 
-ƒRƒ}ƒ“ƒh‚ÅƒCƒ“ƒXƒg[ƒ‹o—ˆ‚Ü‚·B
+ã‚³ãƒãƒ³ãƒ‰ã§ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å‡ºæ¥ã¾ã™ã€‚
 
